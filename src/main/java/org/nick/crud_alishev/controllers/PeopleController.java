@@ -24,14 +24,16 @@ public class PeopleController {
 //		Получим все элементы из ДАО, и передадим их в представление
 //		В параметрах атрибута в кавычках то имя, которое передается в модель;
 //		после запятой указывается метод(источник данных для данной переменной)
+//		в данном случае в переменную "people" передается список, возвращаемый методом индекс
 		model.addAttribute("people", personDAO.index());
-		return null;
+		return "people/index";
 	}
 	
 	@GetMapping("{/id")
 	public String show(@PathVariable("id") int id, Model model){
 //		Получим Один элемент по его Id из Dao и передадим его в представление
-		return null;
+		model.addAttribute("person",personDAO.show(id));
+		return "people/show";
 	}
 	
 }
