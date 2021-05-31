@@ -1,5 +1,7 @@
 package org.nick.crud_alishev.controllers;
 
+import org.nick.crud_alishev.dao.PersonDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/people")
 public class PeopleController {
 	
+	/*Autowired заменен на подключение (внедрение) бина класса personDAO через конструктор*/
+	private final PersonDAO personDAO;/*Объявили класс*/
+//	И передали его в качестве параметра конструктора текущего класса
+	public PeopleController(PersonDAO personDAO) {
+		this.personDAO = personDAO;
+	}
 	
 	@GetMapping()
 	public String index(Model model){
