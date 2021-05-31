@@ -22,6 +22,9 @@ public class PeopleController {
 	@GetMapping()
 	public String index(Model model){
 //		Получим все элементы из ДАО, и передадим их в представление
+//		В параметрах атрибута в кавычках то имя, которое передается в модель;
+//		после запятой указывается метод(источник данных для данной переменной)
+		model.addAttribute("people", personDAO.index());
 		return null;
 	}
 	
