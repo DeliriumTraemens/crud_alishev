@@ -29,4 +29,9 @@ public class PersonDAO {
 				       .orElse(null);/*В случае отсутствия соответствия вернуть null*/
 	
 	}
+	
+	public void save(Person person) {
+		person.setId(++PEOPLE_COUNT);
+		people.add(person);
+	}
 }
