@@ -7,6 +7,7 @@
 <body>
 
 <div th:each="person : ${people}">
+<!--    Thymeleaf sign @ used for URL-->
     <a th:href="@{/people/{id} (id=${person.getId()})}" th:text="${person.getName()}">User</a>
 
 <!--    <a th:href="@{/people/{id} (id=${person.getId()})}">User</a>-->

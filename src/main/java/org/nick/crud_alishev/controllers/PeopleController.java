@@ -35,12 +35,19 @@ public class PeopleController {
 		return "people/show";
 	}
 	
-	@GetMapping("/new")
-	public String newPerson(Model model){
-		model.addAttribute("person", new Person());
-		return "people/new";
-	}
-	
+//	@GetMapping("/new")
+//	public String newPerson(Model model){
+//		model.addAttribute("person", new Person());
+//		return "people/new";
+//	}
+
+//	В отличие от PostMapping  @ModelAttribute("person") Person person Создает объект Person и ПЕРЕДАЕТ его в атрибут "person"
+@GetMapping("/new")
+public String newPerson(@ModelAttribute("person") Person person){
+//	model.addAttribute("person", new Person());
+	return "people/new";
+}
+//	Считываем данные из "person" и помещаем их во внедренный Person person
 	@PostMapping()
 	public String create(@ModelAttribute("person") Person person){
 		personDAO.save(person);
@@ -48,5 +55,19 @@ public class PeopleController {
 		return "redirect:/people";
 	}
 	
+//	Извлекаем из скобок PathVariable значение ("id") и кладем его в int id
+	@GetMapping("/{id}/edit")
+	public String edit(Model model,@PathVariable("id") int id) {
+//		А здесь мы Кладем результат personDAO.show(id) в "person" -- id получаем из @GetMapping("/{id}/edit")
+		model.addAttribute("person", personDAO.show(id));
+		return "people/edit";
+	}
+//	В ModelAttribute принимаем объект person из кавычек и помещаем его в Person person;
+//	В @PathVariable("id") int id принимаем "id" и помещаем его в int id
+	@PatchMapping("/{id}")
+	public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
+		personDAO.update(id, person);
+		return "redirect:people";
+	}
 	
 }
