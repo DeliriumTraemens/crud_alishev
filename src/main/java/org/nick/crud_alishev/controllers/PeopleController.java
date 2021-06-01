@@ -29,11 +29,12 @@ public class PeopleController {
 		return "people/index";
 	}
 	
-	@GetMapping("{/id")
+	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model){
 //		Получим Один элемент по его Id из Dao и передадим его в представление
 		model.addAttribute("person",personDAO.show(id));
 		return "people/show";
 	}
+	
 	
 }
