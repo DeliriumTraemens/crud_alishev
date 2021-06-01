@@ -38,6 +38,7 @@ public class PersonDAO {
 	public void update(int id, Person updatedPerson) {
 		Person personToBeUpdated = show(id);
 		personToBeUpdated.setName(updatedPerson.getName());
+		personToBeUpdated.setId(id);
 		people.set(id, personToBeUpdated);
 	}
 }

@@ -64,10 +64,11 @@ public String newPerson(@ModelAttribute("person") Person person){
 	}
 //	В ModelAttribute принимаем объект person из кавычек и помещаем его в Person person;
 //	В @PathVariable("id") int id принимаем "id" и помещаем его в int id
-	@PatchMapping("/{id}")
+//	@PatchMapping("/{id}")
+	@PostMapping("/{id}")
 	public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
 		personDAO.update(id, person);
-		return "redirect:people";
+		return "redirect:/people";
 	}
 	
 }
