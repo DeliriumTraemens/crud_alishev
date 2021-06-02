@@ -1,10 +1,25 @@
 package org.nick.crud_alishev.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Person {
 	private int id;
+	
+	@NotEmpty(message="Name should not be empty!")
+	@Size(min=2, max=20, message="Name should be between 2 and 20 characters")
 	private String name;
+	
+	@Min(value=5, message="Age must be not less than 5 years")
 	private int age;
+	
+	@NotEmpty(message = "Email should not be empty")
+	@Email(message = "Email shoul be valid email")
 	private String email;
+	
+	
 	
 	public int getAge() {
 		return age;

@@ -5,7 +5,10 @@ import org.nick.crud_alishev.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 //@RestController
@@ -49,8 +52,9 @@ public String newPerson(@ModelAttribute("person") Person person){
 	return "people/new";
 }
 //	Считываем данные из "person" и помещаем их во внедренный Person person
+//	Binding result содержит данные об в случае ошибки валидации. Данный объект заявляется Всегда ПОСЛЕ валидируемого класса!!!
 	@PostMapping()
-	public String create(@ModelAttribute("person") Person person){
+	public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
 		personDAO.save(person);
 		
 		return "redirect:/people";
