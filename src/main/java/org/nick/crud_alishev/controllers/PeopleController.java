@@ -52,13 +52,18 @@ public String newPerson(@ModelAttribute("person") Person person){
 	return "people/new";
 }
 //	Считываем данные из "person" и помещаем их во внедренный Person person
-//	Binding result содержит данные об в случае ошибки валидации. Данный объект заявляется Всегда ПОСЛЕ валидируемого класса!!!
+//	Binding result содержит данные об в случае ошибки валидации. Данный объект заявляется Всегда СРАЗУ ПОСЛЕ валидируемого класса!!!
 	@PostMapping()
 	public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
+		if (bindingResult.hasErrors()){
+			return "people/new";
+		}
 		personDAO.save(person);
 		
 		return "redirect:/people";
 	}
+	
+	
 	
 //	Извлекаем из скобок PathVariable значение ("id") и кладем его в int id
 	@GetMapping("/{id}/edit")
@@ -70,7 +75,10 @@ public String newPerson(@ModelAttribute("person") Person person){
 //	В ModelAttribute принимаем объект person из кавычек и помещаем его в Person person;
 //	В @PathVariable("id") int id принимаем "id" и помещаем его в int id
 	@PatchMapping("/{id}")
-	public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
+	public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("id") int id){
+		if (bindingResult.hasErrors()){
+			return "people/edit";
+		}
 		personDAO.update(id, person);
 		return "redirect:/people";
 	}

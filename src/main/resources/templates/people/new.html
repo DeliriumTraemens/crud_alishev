@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
 <head>
     <meta charset="UTF-8">
     <title>Новый человек</title>
@@ -10,14 +11,19 @@
         <label for="name">Enter Name</label>
 <!--                                 * Для имени поля      -->
         <input type="text" th:field="*{name}" id="name"/>
+        <!--        ${#Fields } Доступ ко всем полям внедренного  th:object="${person}"
+             th:errors="*{name} -> сообщение об ошибке, указанное в валидации данного поля в классе                                      -->
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
         <br/>
 
         <label for="age">Enter Age</label>
         <input type="text" th:field="*{age}" id="age"/>
+        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</div>
         <br/>
 
         <label for="email">Enter email</label>
         <input type="text" th:field="*{email}" id="email"/>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>
         <br/>
 
         <input type="submit" value="Create!"/>
