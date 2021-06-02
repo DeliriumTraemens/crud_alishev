@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+//@RestController
 @RequestMapping("/people")
 public class PeopleController {
 	
@@ -64,11 +65,17 @@ public String newPerson(@ModelAttribute("person") Person person){
 	}
 //	В ModelAttribute принимаем объект person из кавычек и помещаем его в Person person;
 //	В @PathVariable("id") int id принимаем "id" и помещаем его в int id
-//	@PatchMapping("/{id}")
-	@PostMapping("/{id}")
+	@PatchMapping("/{id}")
 	public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
 		personDAO.update(id, person);
 		return "redirect:/people";
+	}
+	
+	@DeleteMapping("/{id}")
+	public String delete(@PathVariable("id") int id) {
+		personDAO.delete(id);
+		return "redirect:/people";
+	
 	}
 	
 }

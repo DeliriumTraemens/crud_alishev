@@ -6,10 +6,24 @@
 </head>
 <body>
 <p th:text="${person.getName()}">Value</p>
+<!--<br/>-->
+<p th:text="${person.getId()}">Value</p>
+<!--<br/>-->
+<p th:text="${person.getAge}">Value</p>
+<!--<br/>-->
+<p th:text="${person.getEmail}">Value</p>
 <br/>
-<h5 th:text="${person.getId()}">Value</h5>
-<br/>
+<hr/>
+
 <a th:href="@{/people/{id}/edit (id=${person.getId()})}">Edit</a>
+<br/>
+<br/>
+
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+<!--    value="Some text" это НАДПИСЬ на кнопке-->
+    <input type="submit" value="Delete!"/>
+</form>
+<br/>
 
 
 
