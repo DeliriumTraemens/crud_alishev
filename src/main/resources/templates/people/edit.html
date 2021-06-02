@@ -15,14 +15,20 @@
          th:field="*{name}" = th:object="${person}" .getName()  -->
         <label for="name"><strong>Enter Name</strong></label>
         <input type="text" th:field="*{name}" id="name"/>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
         <br/>
         <br/>
         <label for="age"><strong>Enter Age</strong></label>
         <input type="text" th:field="*{age}" id="age"/>
+        <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>
+
         <br/>
         <br/>
         <label for="email"><strong>Enter Email</strong></label>
         <input type="text" th:field="*{email}" id="email"/>
+        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+
         <br/>
         <br/>
         <hr/>
