@@ -19,6 +19,13 @@ public class PersonDAO {
 		people.add(new Person(++PEOPLE_COUNT,"Garry"));
 	}
 	
+	@Override
+	public String toString() {
+		return "PersonDAO{" +
+				       "people=" + people +
+				       '}';
+	}
+	
 	public List<Person> index(){
 		return people;
 	}
@@ -39,6 +46,7 @@ public class PersonDAO {
 		Person personToBeUpdated = show(id);
 		personToBeUpdated.setName(updatedPerson.getName());
 		personToBeUpdated.setId(id);
-		people.set(id, personToBeUpdated);
+//		people.set(id, personToBeUpdated);
+		System.out.println(people);
 	}
 }
