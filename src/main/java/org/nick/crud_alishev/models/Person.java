@@ -12,6 +12,7 @@ public class Person {
 	@Size(min=2, max=20, message="Name should be between 2 and 20 characters")
 	private String name;
 	
+	
 	@Min(value=5, message="Age must be not less than 5 years")
 	private int age;
 	
