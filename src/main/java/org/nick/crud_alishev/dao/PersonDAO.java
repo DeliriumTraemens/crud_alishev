@@ -32,6 +32,7 @@ public class PersonDAO {
 		try {
 			Statement statement = connection.createStatement();
 			String SQL = "SELECT * FROM Person";
+//			executeQuery только получает запрошенные данные из базы, не изменяет данные
 			ResultSet resultSet  = statement.executeQuery(SQL);
 			
 			while (resultSet.next()){
@@ -62,7 +63,18 @@ public class PersonDAO {
 	public void save(Person person) {
 //		person.setId(++PEOPLE_COUNT);
 //		people.add(person);
-	
+		try {
+//			Connection is static, so it's created only once
+			Statement statement = connection.createStatement();
+			String SQL = "INSERT INTO Person VALUES(" + 1 + ",'" + person.getName() +
+					             "'," + person.getAge() + ",'" + person.getEmail() + "')";
+//			executeUpdate для вставки или обновления данных -- INSERT или SET
+			statement.executeUpdate(SQL);
+			
+		}
+		catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}
 	}
 	
 	public void update(int id, Person updatedPerson) {
