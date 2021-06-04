@@ -36,28 +36,32 @@ public class PersonDAO {
 			
 			while (resultSet.next()){
 				Person person = new Person();
-				person.setId( resultSet.getInt("id"));
+				person.setId(resultSet.getInt("id"));
 				person.setName(resultSet.getString("name"));
-				person.setId( resultSet.getInt("age"));
-				person.setName(resultSet.getString("email"));
+				person.setAge(resultSet.getInt("age"));
+				person.setEmail(resultSet.getString("email"));
+				
+				people.add(person);
 			}
 			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return people;
 	}
 	
-	public Person show(int id){
-//		return people.stream().filter(person->person.getId()==id)/*Условие для фильтра - найти по id*/
-//				       .findAny()/*Найти если есть*/
-//				       .orElse(null);/*В случае отсутствия соответствия вернуть null*/
-	
-	}
+//	public Person show(int id){
+////		return people.stream().filter(person->person.getId()==id)/*Условие для фильтра - найти по id*/
+////				       .findAny()/*Найти если есть*/
+////				       .orElse(null);/*В случае отсутствия соответствия вернуть null*/
+//
+//	}
 	
 	public void save(Person person) {
-		person.setId(++PEOPLE_COUNT);
-		people.add(person);
+//		person.setId(++PEOPLE_COUNT);
+//		people.add(person);
 	}
 	
 	public void update(int id, Person updatedPerson) {

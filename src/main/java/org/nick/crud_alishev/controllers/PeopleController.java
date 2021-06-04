@@ -35,7 +35,7 @@ public class PeopleController {
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model){
 //		Получим Один элемент по его Id из Dao и передадим его в представление
-		model.addAttribute("person",personDAO.show(id));
+//		model.addAttribute("person",personDAO.show(id));
 		return "people/show";
 	}
 	
@@ -69,7 +69,7 @@ public String newPerson(@ModelAttribute("person") Person person){
 	@GetMapping("/{id}/edit")
 	public String edit(Model model,@PathVariable("id") int id) {
 //		А здесь мы Кладем результат personDAO.show(id) в "person" -- id получаем из @GetMapping("/{id}/edit")
-		model.addAttribute("person", personDAO.show(id));
+//		model.addAttribute("person", personDAO.show(id));
 		return "people/edit";
 	}
 //	В ModelAttribute принимаем объект person из кавычек и помещаем его в Person person;
