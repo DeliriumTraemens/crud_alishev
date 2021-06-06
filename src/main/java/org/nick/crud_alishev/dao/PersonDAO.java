@@ -1,28 +1,43 @@
 package org.nick.crud_alishev.dao;
 
 import org.nick.crud_alishev.models.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class PersonDAO {
-	private static int PEOPLE_COUNT;
 	
-	private static final String URL = "jdbc:mysql://localhost:3306/spring_alishev";
-	private static String USERNAME = "root";
-	private static String PASSWORD ="12345";
-	private static Connection connection;
-	static{
-		try {
-			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-		}
-		catch (SQLException throwables) {
-			throwables.printStackTrace();
-		}
+//	@Bean
+	public DataSource dataSource(){
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/spring_alishev");
+		dataSource.setUsername("root");
+		dataSource.setPassword("12345");
+		return dataSource;
+		
 	}
+	
+//	@Bean
+	@Autowired
+	public JdbcTemplate jdbcTemplate(){
+		return new JdbcTemplate(dataSource());
+	}
+	
+	
+	
+//	private static int PEOPLE_COUNT;
+	
+	
+	
 
 	
 	public List<Person> index(){
@@ -52,40 +67,6 @@ public class PersonDAO {
 		
 		return people;
 	}
-	
-//	public Person show(int id){
-////		Указываем объект на нулл
-//		Person person =null;
-//		try {
-//
-//			PreparedStatement preparedStatement =
-//					connection.prepareStatement("SELECT * FROM Person WHERE id=?");
-//						preparedStatement.setInt(1,id);
-//
-//					ResultSet resultSet = preparedStatement.executeQuery();
-//
-//			resultSet.next();
-//
-//				person = new Person();
-//
-////				person.setId(resultSet.getInt("id"));
-////				person.setName(resultSet.getString("name"));
-////				person.setAge(resultSet.getInt("age"));
-////				person.setEmail(resultSet.getString("email"));
-//
-//				person.setId(resultSet.getInt("id"));
-//				person.setName(resultSet.getString("name"));
-//				person.setEmail(resultSet.getString("email"));
-//				person.setAge(resultSet.getInt("age"));
-//
-//
-//
-//		}
-//		catch (SQLException throwables) {
-//			throwables.printStackTrace();
-//		}
-//		return person;
-//	}
 	
 	
 	public Person show(int id) {
@@ -119,9 +100,9 @@ public class PersonDAO {
 		try {
 			PreparedStatement preparedStatement =
 					connection.prepareStatement("INSERT INTO Person VALUES (1,?,?,?)");
-						preparedStatement.setString(1, person.getName());
-						preparedStatement.setInt(2,person.getAge());
-						preparedStatement.setString(3,person.getEmail());
+			preparedStatement.setString(1, person.getName());
+			preparedStatement.setInt(2,person.getAge());
+			preparedStatement.setString(3,person.getEmail());
 					preparedStatement.executeUpdate();
 			
 			

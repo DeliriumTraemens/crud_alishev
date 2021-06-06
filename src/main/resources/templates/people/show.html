@@ -5,26 +5,6 @@
     <title>Человек</title>
 </head>
 <body>
-<!--&lt;!&ndash;<p th:text="${person.getName()}">Value</p>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;<br/>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;<p th:text="${person.getId()}">Value</p>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;<br/>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;<p th:text="${person.getAge}">Value</p>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;<br/>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;<p th:text="${person.getEmail}">Value</p>&ndash;&gt;-->
-<!--&lt;!&ndash;<br/>&ndash;&gt;-->
-<!--&lt;!&ndash;<hr/>&ndash;&gt;-->
-
-<!--<a th:href="@{/people/{id}/edit (id=${person.getId()})}">Edit</a>-->
-<!--<br/>-->
-<!--<br/>-->
-
-<!--<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">-->
-<!--&lt;!&ndash;    value="Some text" это НАДПИСЬ на кнопке&ndash;&gt;-->
-<!--    <input type="submit" value="Delete!"/>-->
-<!--</form>-->
-<!--<br/>-->
-
 
 <p th:text="${person.getName() + ', ' + person.getAge()}">VALUE</p>
 <p th:text="${'Email: ' + person.getEmail()}">VALUE</p>
